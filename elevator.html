@@ -3,11 +3,15 @@
 </head>
 
 <body>
-  {{> hello}}
+  {{> new_competition}}
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+<template name="new_competition">
+    <h1>New Competition</h1>
+    <input type="text" name="name_of_competition" value="name">
+    <select name="type_of_competition">
+        <option value="bike">Bike</option>
+        <option value="walk">Walk</option>
+    </select>
+    {{test_content}}
 </template>
