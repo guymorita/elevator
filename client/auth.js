@@ -1,3 +1,6 @@
+Users = new Meteor.Collection("users");
+Competitions = new Meteor.Collection("competitions");
+
 Meteor.startup(function(){
   yam.connect.loginButton('#yammer-login', function (resp) {
     if (resp.authResponse) {
@@ -24,9 +27,10 @@ Template.yammer_login.events({
     console.log('test');
     yam.getLoginStatus(function(res){
       console.log('res', res);
-      Meteor.call('new_user', res, function(error, result){
+      Meteor.call('new_user', res, function(error, userObj){
         console.log('error', error);
-        console.log('result', result);
+        console.log('result', userObj);
+        Session.set('current_user_id', userObj._id);
       });
     });
   }

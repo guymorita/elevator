@@ -7,6 +7,7 @@
 <body>
   {{> yammer_login}}
   {{> new_competition}}
+  {{> all_users}}
 </body>
 
 <template name="yammer_login">
@@ -20,18 +21,27 @@
 <template name="new_competition">
   <div class="new-competition">
     <h1>New Competition</h1>
-    <input type="text" name="name_of_competition" value="name">
-    <select name="type_of_competition">
-        <option value="bike">Bike</option>
-        <option value="walk">Walk</option>
+    <input class="new-competition__name" type="text" value="name">
+    <select class="new-competition__type">
+        <option value="fitness">Fitness</option>
+        <option value="health">Health</option>
+        <option value="walk">Volunteer</option>
+        <option value="walk">Professional</option>
+        <option value="walk">Health</option>
+        <option value="walk">Health</option>
     </select>
-    <input type="textbox">
-    <input type="text" name="goal_number">
-    <input type="text" name="goal_metric">
-    <input type="date" name="end_date">
-    <button>Create</button>
+    <input type="text" class="new-competition__goal-number">
+    <input type="text" class="new-competition__goal-metric">
+    <input type="date" class="new-competition__end-date">
+    <button id="new_competition__create">Create</button>
     {{test_content}}
   <div>
+</template>
+
+<template name="all_users">
+  {{#each get_all_users}}
+    <div>{{yammer_id}}</div>
+  {{/each}}
 </template>
 
 <template name="leaderboard">

@@ -29,7 +29,7 @@ Meteor.methods({
       console.log('result', result);
     });
 
-    return user_obj.yammer_id;
+    return user_obj;
   },
   add_user_to_competition: function(competitionid, userId){
     return Competition.update({_id: competitionid}, {$push: {userId: userId}}, function(err){
