@@ -75,7 +75,7 @@ Meteor.methods({
     var comp = Competitions.findOne({_id: competitionId});
     console.log('before', comp);
     _(comp.users).each(function(user){
-      if(user.userId === userId) {
+      if(''+user.userId === ''+userId) {
         user.score += value;
       }
     });
