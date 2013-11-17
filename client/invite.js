@@ -12,6 +12,24 @@ var get_friends = function(){
   });
 };
 
+var send_msg_to_friend = function(input){
+  var payload = {
+    body: 'Your challenge, should you choose to accept it. Visit: http://www.google.com',
+    direct_to_id: input.id
+  };
+  yam.request({
+    url: "https://www.yammer.com/api/v1/messages.json",
+    method: "POST",
+    data: payload,
+    success: function (data) {
+      console.log("The request was successful.");
+    },
+    error: function (data) {
+      console.log("There was an error with the request.");
+    }
+  });
+};
+
 var create_pending_user = function (input) {
   var pendingUser = {
     access_token: {},
@@ -53,5 +71,6 @@ Template.invite.events({
     console.log('invite_by_id', this);
     create_pending_user(this);
     add_pending_user_to_comp(this);
+    // send_msg_to_friend(this);
   }
 });
