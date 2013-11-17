@@ -108,7 +108,7 @@ Meteor.methods({
     };
     var added = Competitions.findOne(query);
     var competitionObj = Competitions.findOne({_id: competitionId});
-    var randomStart = Math.floor(Math.random()*competitionObj.goal_number);
+    var randomStart = Math.floor(Math.random()*competitionObj.goal_number*0.5);
     console.log('--added', added);
 
     //if user hasn't been added to the competition
