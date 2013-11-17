@@ -26,7 +26,7 @@ Template.new_competition.events({
     new_competition_obj.goal_number = $('.new-competition__goal-number').val();
     new_competition_obj.goal_metric = $('.new-competition__goal-metric').val();
     new_competition_obj.end_date = $('.new-competition__end-date').val();
-    new_competition_obj.users = [{userId: Session.get('current_yammer_id'), score: 0}]
+    new_competition_obj.users = [{userId: Session.get('current_yammer_id'), score: 0}];
     Competitions.insert(new_competition_obj, function(err, id){
       if (err){
         return err;
