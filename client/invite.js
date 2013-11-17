@@ -15,16 +15,14 @@ var get_friends = function(){
 
 Template.invite.friends = function(){
   return Session.get('friends');
-  // if (Session.get('current_competition_id')){
-  //   var competition = Competitions.findOne({_id:Session.get('current_competition_id')});
-  //   return competition && competition.users;
-  //   // console.log('competition', competition);
-  // }
 };
 
 Template.invite.events({
   'click .invite' : function () {
     console.log('invite');
     get_friends();
+  },
+  'click .invite_by_id' : function () {
+    console.log('invite_by_id', this);
   }
 });

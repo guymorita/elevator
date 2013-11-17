@@ -88,7 +88,7 @@
     <input type="button" value="invite" class="invite" />
     <h2>All users</h2>
     {{#each friends}}
-      <div>{{this.first_name}}</div>
+      <div class="{{this.id}} invite_by_id">{{this.first_name}}</div>
     {{/each}}
   </div>
 </template>
