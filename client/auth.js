@@ -15,17 +15,38 @@ var get_friends = function(){
   });
 };
 
+var add_friends_to_comp = function(){
+  var all_friends = Session.get('friends');
+  var ten_friends = _.first(_.shuffle(all_friends), 10);
+
+  Competitions.find({}).forEach(function(comp){
+    if(comp.users.length < 10){
+      _(ten_friends).each(function(friend){
+        Meteor.call('add_user_to_competition', comp._id, friend.id, function(error, userObj){
+          console.log('error', error);
+          console.log('result', userObj);
+        });
+      });
+    }
+  });
+
+};
+
 Meteor.startup(function(){
   yam.connect.loginButton('#yammer-login', function (resp) {
     if (resp.authResponse) {
       Session.set('current_yammer_id', resp.user.id);
 
+      //create a new user
       Meteor.call('new_user', resp, function(error, userObj){
         console.log('error', error);
         console.log('result', userObj);
       });
 
       get_friends();
+
+      //add friends to comp
+      add_friends_to_comp();
 
     }
   });
