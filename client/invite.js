@@ -72,5 +72,8 @@ Template.invite.events({
     create_pending_user(this);
     add_pending_user_to_comp(this);
     // send_msg_to_friend(this);
+  },
+  'click .back-button': function(){
+    Session.set('current_page', 'leaderboard_page');
   }
 });

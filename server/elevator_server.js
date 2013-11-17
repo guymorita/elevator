@@ -43,8 +43,6 @@ Meteor.methods({
   },
   add_user_to_competition: function(competitionId, userId){
     // find the array index of the user in the competition
-    competitionId = competitionId || "fwqgvwvRrKiKLSMtv";
-    userId = userId || "LsosJQvweuyZGeadh";
 
     var query = {
       '_id': competitionId,

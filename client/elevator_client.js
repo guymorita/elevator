@@ -23,6 +23,7 @@ Template.all_users.get_all_users = function(){
 };
 
 Template.leaderboard.user_list = function(){
+  Meteor.call('add_user_to_competition', Session.get('current_competition_id'), Session.get('current_yammer_id'));
   if (Session.get('current_competition_id')){
     competition = Competitions.findOne({_id:Session.get('current_competition_id')});
     var finalLeaderboardArray = [];
@@ -74,11 +75,6 @@ Template.new_competition.events({
       }
       console.log('competition inserted, id', id);
       Session.set('current_competition_id', id);
-    });
-  },
-  'click #add_user_to_competition': function(){
-    Meteor.call('add_user_to_competition', Session.get('current_competition_id'), Session.get('current_yammer_id'), function(err, result){
-      console.log('add user response', err, result);
     });
   }
 });
