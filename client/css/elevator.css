@@ -1,1 +1,38 @@
-/* CSS declarations go here */
+
+.chart .baritem {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+  display: inline-block;
+}
+
+.leaderboard .comp-pic {
+  border: 2px solid white;
+  -moz-box-shadow: 2px 2px 1px #888;
+  -webkit-box-shadow: 2px 2px 1px #888;
+  box-shadow: 2px 2px 1px #888;
+  margin-right: 5px;
+}
+
+.leaderboard .row {
+  margin: 10px 0px;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.leaderboard .row * {
+  display: inline-block;
+}
+
+.leaderboard-buttons {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  padding: 5px;
+}
+
+.clickable-div {
+  cursor: pointer;
+}

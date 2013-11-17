@@ -21,8 +21,9 @@ Template.logged_in.add_friend_page = function(){
 Template.all_users.get_all_users = function(){
   return Users.find({});
 };
-
+var scoreArray = [];
 Template.leaderboard.user_list = function(){
+  scoreArray = [];
   Meteor.call('add_user_to_competition', Session.get('current_competition_id'), Session.get('current_yammer_id'));
   if (Session.get('current_competition_id')){
     competition = Competitions.findOne({_id:Session.get('current_competition_id')});
@@ -31,7 +32,8 @@ Template.leaderboard.user_list = function(){
     _.each(competition.users,function(value){
       userObj = Users.findOne({yammer_id: ''+value.userId});
       if (userObj){
-        finalLeaderboardArray.push(_.extend({}, value, userObj.user));
+        var scaled_score = (value.score / competition.goal_number * 400);
+        finalLeaderboardArray.push(_.extend({}, value, userObj.user, {scaled_score: scaled_score}));
       }
     });
 

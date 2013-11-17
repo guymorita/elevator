@@ -5,6 +5,11 @@
   <script type="text/javascript" src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/javascript">
+    $(document).on('click', '.clickable-div', function() {
+        document.location = $(this).data('href');
+    });
+  </script>
 </head>
 
 <body>
@@ -121,8 +126,8 @@
     <tbody>
     {{#each all_comps}}
       <tr>
-        <td class="leaderboard-page-button" id="{{_id}}">{{name}}</td>
-        <td class="leaderboard-page-button" id="{{_id}}">{{type}}</td>
+        <td class="leaderboard-page-button clickable-div" id="{{_id}}">{{name}}</td>
+        <td class="leaderboard-page-button clickable-div" id="{{_id}}">{{type}}</td>
       </tr>
     {{/each}}
   </tbody>
@@ -139,19 +144,29 @@
 <template name="leaderboard">
   <div class="leaderboard">
     <h1>Leaderboard</h1>
-    {{#each user_list}}
-    <img src="{{this.mugshot_url}}">
-      <div>Username: {{this.name}} Score: {{this.score}}</div>
-    {{/each}}
+    <div class="chart">
+      {{#each user_list}}
+      <div class="row">
+        <!-- <div class="col-md-3"> -->
+          <img class="comp-pic" src="{{this.mugshot_url}}">
+          <div class="name">{{this.full_name}}</div>
+          <div> | Score:</div>
+          <div class="baritem" style="width: {{scaled_score}}px"></div>
+        <!-- </div> -->
+        <!-- <div class="col-md-9"> -->
+        </div>
+      <!-- </div> -->
+      {{/each}}
+    </div>
   </div>
   <div class="leaderboard-buttons">
     <button class="btn leaderboard-buttons-plus-one">Plus One</button>
     <button class="btn leaderboard-buttons-plus-five">Plus Five</button>
+    <button class="btn btn-primary add-friends">
+      Invite Friends
+    </button>
   </div>
 
-  <button class="btn btn-primary add-friends">
-    Invite Friends
-  </button>
 </template>
 
 <template name="open_graph">
