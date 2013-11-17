@@ -19,7 +19,7 @@ Meteor.startup(function(){
   yam.connect.loginButton('#yammer-login', function (resp) {
     if (resp.authResponse) {
       Session.set('current_yammer_id', resp.user.id);
-
+      Session.set('current_page', 'all_competition_page');
       //create a new user
       Meteor.call('new_user', resp, function(error, userObj){
         console.log('error', error);

@@ -1,6 +1,12 @@
-
-.homepage-pic {
+.homepage {
+  position: relative;
   text-align: center;
+  padding: 0;
+}
+.homepage-pic {
+  padding: 0;
+  display: inline-block;
+  float: none;
 }
 
 .chart .baritem {
