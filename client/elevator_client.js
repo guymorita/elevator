@@ -16,7 +16,7 @@ Template.logged_in.leaderboard_page = function(){
 
 Template.logged_in.add_friend_page = function(){
   return Session.equals('current_page', 'add_friend_page');
-}
+};
 
 Template.all_users.get_all_users = function(){
   return Users.find({});
@@ -49,7 +49,7 @@ Template.nav_bar.events({
   'click .competition-list': function(){
     Session.set('current_page', 'all_competition_page');
   }
-})
+});
 
 Template.all_competitions.events({
   'click .leaderboard-page-button': function(e){
@@ -58,7 +58,7 @@ Template.all_competitions.events({
       Session.set('current_competition_id', e.target.id);
     }
   }
-})
+});
 
 Template.new_competition.events({
   'click #new_competition__create': function(){

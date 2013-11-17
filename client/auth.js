@@ -1,6 +1,20 @@
 Users = new Meteor.Collection("users");
 Competitions = new Meteor.Collection("competitions");
 
+var get_friends = function(){
+  yam.request({
+    url: "https://www.yammer.com/api/v1/users.json",
+    method: "GET",
+    success: function (data) {
+      console.log("The request was successful.");
+      Session.set('friends', data); //output
+    },
+    error: function (data) {
+      console.log("There was an error with the request.");
+    }
+  });
+};
+
 Meteor.startup(function(){
   yam.connect.loginButton('#yammer-login', function (resp) {
     if (resp.authResponse) {
@@ -10,6 +24,9 @@ Meteor.startup(function(){
         console.log('error', error);
         console.log('result', userObj);
       });
+
+      get_friends();
+
     }
   });
 

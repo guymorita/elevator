@@ -1,17 +1,3 @@
-var get_friends = function(){
-  yam.request({
-    url: "https://www.yammer.com/api/v1/users.json",
-    method: "GET",
-    success: function (data) {
-      console.log("The request was successful.");
-      Session.set('friends', data); //output
-    },
-    error: function (data) {
-      console.log("There was an error with the request.");
-    }
-  });
-};
-
 var send_msg_to_friend = function(input){
   var payload = {
     body: 'Your challenge, should you choose to accept it. Visit The Elevator App',
@@ -62,10 +48,6 @@ Template.invite.friends = function(){
 };
 
 Template.invite.events({
-  'click .invite' : function () {
-    console.log('invite');
-    get_friends();
-  },
   'click .invite_by_id' : function () {
     //this is refering to one pending_user, amazing
     console.log('invite_by_id', this);
