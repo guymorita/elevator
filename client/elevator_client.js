@@ -6,6 +6,14 @@ Template.all_users.get_all_users = function(){
   return Users.find({});
 };
 
+Template.leaderboard.user_list = function(){
+  if (Session.get('current_competition_id')){
+    var competition = Competitions.findOne({_id:Session.get('current_competition_id')});
+    return competition && competition.users;
+    // console.log('competition', competition);
+  }
+};
+
 Template.new_competition.events({
   'click #new_competition__create': function(){
     var new_competition_obj = {};
@@ -28,4 +36,8 @@ Template.new_competition.events({
       console.log('add user response', err, result);
     });
   }
+});
+
+Template.leaderboard.events({
+
 });

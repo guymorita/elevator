@@ -9,6 +9,7 @@
   {{> new_competition}}
   {{> all_users}}
   {{> open_graph}}
+  {{> leaderboard}}
 </body>
 
 <template name="yammer_login">
@@ -49,7 +50,10 @@
 
 <template name="leaderboard">
   <div class="leaderboard">
-
+    <h1>Leaderboard</h1>
+    {{#each user_list}}
+      <div>Username: {{userId}} Score: {{score}}</div>
+    {{/each}}
   </div>
 </template>
 
