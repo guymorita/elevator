@@ -4,8 +4,63 @@
 Users = new Meteor.Collection("users");
 Competitions = new Meteor.Collection("competitions");
 
-Meteor.startup(function () {
+var init_comps = [
+  {
+    end_date: "2013-11-23",
+    goal_metric: "climing 8 floor",
+    goal_number: "10",
+    name: "Elevator Hater's Club",
+    type: "fitness",
+    users: []
+  },
+  {
+    end_date: "2013-11-25",
+    goal_metric: "working out at lunch time",
+    goal_number: "5",
+    name: "Run, not lunch",
+    type: "fitness",
+    users: []
+  },
+  {
+    end_date: "2013-11-30",
+    goal_metric: "steps per week",
+    goal_number: "100000",
+    name: "Proud Fitbit Owners",
+    type: "health",
+    users: []
+  },
+  {
+    end_date: "2014-02-10",
+    goal_metric: "run one marathon",
+    goal_number: "1",
+    name: "Run, Forrest, Run",
+    type: "health",
+    users: []
+  },
+  {
+    end_date: "2014-03-15",
+    goal_metric: "$",
+    goal_number: "1000",
+    name: "Cook-off for Asian Women's Shelter",
+    type: "volunteer",
+    users: []
+  },
+  {
+    end_date: "2014-04-30",
+    goal_metric: "ms",
+    goal_number: "-100",
+    name: "Reduce page load spead by 100ms, win $10k",
+    type: "professional",
+    users: []
+  }
+];
 
+Meteor.startup(function () {
+  if(Competitions.find({}).count()<5){
+    _(init_comps).each(function(item){
+      Competitions.insert(item);
+    });
+  }
 });
 
 Meteor.methods({
