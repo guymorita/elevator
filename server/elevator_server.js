@@ -40,13 +40,14 @@ Meteor.methods({
       '_id': competitionId,
       'users.userId': userId
     };
-    var competition = Competitions.findOne(query);
+    var added = Competitions.findOne(query);
 
-    console.log('--competition', competition);
+    console.log('--added', added);
 
-    if (!competition){
+    //if user hasn't been added to the competition
+    if (!added){
       Competitions.update({_id:competitionId},
-        {$addToSet: {'users': {'userId': userId, 'score': 0}}},
+        {$addToSet: {'users': {'userId': userId, 'score': 3}}},
         function(err, result){
           console.log('insert err result', err, result);
         }
