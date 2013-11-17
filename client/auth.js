@@ -30,7 +30,7 @@ Template.yammer_login.events({
       Meteor.call('new_user', res, function(error, userObj){
         console.log('error', error);
         console.log('result', userObj);
-        Session.set('current_user_id', userObj._id);
+        Session.set('current_yammer_id', userObj.yammer_id);
       });
     });
   }

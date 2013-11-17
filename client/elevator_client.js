@@ -14,13 +14,18 @@ Template.new_competition.events({
     new_competition_obj.goal_number = $('.new-competition__goal-number').val();
     new_competition_obj.goal_metric = $('.new-competition__goal-metric').val();
     new_competition_obj.end_date = $('.new-competition__end-date').val();
-    new_competition_obj.users = [{userId: Session.get('current_user_id'), score: 0}]
+    new_competition_obj.users = [{userId: Session.get('current_yammer_id'), score: 0}]
     Competitions.insert(new_competition_obj, function(err, id){
       if (err){
         return err;
       }
       console.log('competition inserted, id', id);
       Session.set('current_competition_id', id);
+    });
+  },
+  'click #add_user_to_competition': function(){
+    Meteor.call('add_user_to_competition', Session.get('current_competition_id'), Session.get('current_yammer_id'), function(err, result){
+      console.log('add user response', err, result);
     });
   }
 });

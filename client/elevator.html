@@ -36,12 +36,13 @@
     <button id="new_competition__create">Create</button>
     {{test_content}}
   <div>
+    <button id="add_user_to_competition">Add User</button>
 </template>
 
 <template name="all_users">
   <div>All Users</div>
   {{#each get_all_users}}
-    <div>{{_id}}</div>
+    <div>{{yammer_id}}</div>
   {{/each}}
 </template>
 
