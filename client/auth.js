@@ -1,7 +1,7 @@
 Users = new Meteor.Collection("users");
 Competitions = new Meteor.Collection("competitions");
 
-var get_friends = function(){
+var get_friends_and_set_them = function(){
   yam.request({
     url: "https://www.yammer.com/api/v1/users.json",
     method: "GET",
@@ -15,23 +15,6 @@ var get_friends = function(){
   });
 };
 
-var add_friends_to_comp = function(){
-  var all_friends = Session.get('friends');
-  var ten_friends = _.first(_.shuffle(all_friends), 10);
-
-  Competitions.find({}).forEach(function(comp){
-    if(comp.users.length < 10){
-      _(ten_friends).each(function(friend){
-        Meteor.call('add_user_to_competition', comp._id, friend.id, function(error, userObj){
-          console.log('error', error);
-          console.log('result', userObj);
-        });
-      });
-    }
-  });
-
-};
-
 Meteor.startup(function(){
   yam.connect.loginButton('#yammer-login', function (resp) {
     if (resp.authResponse) {
@@ -43,10 +26,7 @@ Meteor.startup(function(){
         console.log('result', userObj);
       });
 
-      get_friends();
-
-      //add friends to comp
-      add_friends_to_comp();
+      get_friends_and_set_them();
 
     }
   });
