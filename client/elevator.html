@@ -1,7 +1,7 @@
 <head>
   <title>elevator</title>
-  <link src="public/css/foundation.css">
-  <link src="public/css/normalize.css">
+  <link src="css/foundation.css">
+  <link src="css/normalize.css">
 </head>
 
 <body>
@@ -68,6 +68,8 @@
   <div class="panel">
     <input type="button" value="invite" class="invite" />
     <h2>All users</h2>
-
+    {{#each friends}}
+      <div>{{this.first_name}}</div>
+    {{/each}}
   </div>
 </template>
