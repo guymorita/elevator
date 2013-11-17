@@ -39,8 +39,9 @@
 </template>
 
 <template name="all_users">
+  <div>All Users</div>
   {{#each get_all_users}}
-    <div>{{yammer_id}}</div>
+    <div>{{_id}}</div>
   {{/each}}
 </template>
 

@@ -32,9 +32,19 @@ Meteor.methods({
     return user_obj;
   },
   add_user_to_competition: function(competitionid, userId){
-    return Competition.update({_id: competitionid}, {$push: {userId: userId}}, function(err){
-      return err;
-    });
+    // find the array index of the user in the competition
+    Competitions.findOne({_id:competitionId, "users.userId": userId}).count();
+    // Competition.find({_id: competitionId}, function(competitionObj){
+    //   var user_index;
+    //   for (var i = 0; i < competitionObj.users.length; i++){
+    //     if (competitionObj.users[i].userId === userId){
+    //       user_index = i;
+    //     }
+    //   }
+    // //   return Competition.update({_id: competitionId}, {$push: {userId: userId}}, function(err){
+    // //     return err;
+    // // });
+    // });
   },
   get_competition_object: function(competitionId){
     return Competition.find({competitionId: competitionId});
@@ -43,3 +53,13 @@ Meteor.methods({
     return Competition.find({});
   }
 });
+
+Competition = {
+  users: [
+    {
+      userId: 123,
+      score: 3
+    }
+  ]
+}
+
