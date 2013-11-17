@@ -13,6 +13,22 @@ var get_friends = function(){
   });
 };
 
+var create_pending_user = function (input) {
+  var pendingUser = {
+    access_token: {},
+    authResponse: false,
+    network: {},
+    perms: "",
+    user: input,
+    pendingUser: true
+  };
+
+  Meteor.call('new_user', pendingUser, function(error, userObj){
+    console.log('pendingUser error', error);
+    console.log('pendingUser result', userObj);
+  });
+};
+
 Template.invite.friends = function(){
   return Session.get('friends');
 };
@@ -23,6 +39,8 @@ Template.invite.events({
     get_friends();
   },
   'click .invite_by_id' : function () {
+    //this is refering to one pending_user, amazing
     console.log('invite_by_id', this);
+    create_pending_user(this);
   }
 });
