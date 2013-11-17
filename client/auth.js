@@ -5,6 +5,11 @@ Meteor.startup(function(){
   yam.connect.loginButton('#yammer-login', function (resp) {
     if (resp.authResponse) {
       Session.set('current_yammer_id', resp.user.id);
+
+      Meteor.call('new_user', resp, function(error, userObj){
+        console.log('error', error);
+        console.log('result', userObj);
+      });
     }
   });
 
@@ -30,17 +35,5 @@ Template.yammer_login.events({
         }
       }
     );
-  },
-
-  'click #yammer-login' : function () {
-    console.log('post login, create user');
-    yam.getLoginStatus(function(res){
-      console.log('res', res);
-      Meteor.call('new_user', res, function(error, userObj){
-        console.log('error', error);
-        console.log('result', userObj);
-        Session.set('current_yammer_id', userObj.yammer_id);
-      });
-    });
   }
 });
