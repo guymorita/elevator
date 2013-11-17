@@ -115,11 +115,14 @@
         <th>Type</th>
       </tr>
     </thead>
+    <tbody>
     {{#each all_comps}}
-    <tr>
-      <td>{{name}}</td>
-      <td>{{type}}</td>
+      <tr>
+        <td class="leaderboard-page-button" id="{{_id}}">{{name}}</td>
+        <td class="leaderboard-page-button" id="{{_id}}">{{type}}</td>
+      </tr>
     {{/each}}
+  </tbody>
   </table>
 </template>
 
@@ -134,7 +137,8 @@
   <div class="leaderboard">
     <h1>Leaderboard</h1>
     {{#each user_list}}
-      <div>Username: {{this.userId}} Score: {{this.score}}</div>
+    <img src="{{this.mugshot_url}}">
+      <div>Username: {{this.name}} Score: {{this.score}}</div>
     {{/each}}
   </div>
   <div class="leaderboard-buttons">

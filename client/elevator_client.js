@@ -8,23 +8,34 @@ Template.logged_in.new_competition_page = function(){
 
 Template.logged_in.all_competition_page = function(){
   return Session.equals('current_page', 'all_competition_page');
-}
+};
 
+Template.logged_in.leaderboard_page = function(){
+  return Session.equals('current_page', 'leaderboard_page');
+};
 
 Template.all_users.get_all_users = function(){
   return Users.find({});
 };
 
+
+
 Template.leaderboard.user_list = function(){
-  var competition;
   if (Session.get('current_competition_id')){
     competition = Competitions.findOne({_id:Session.get('current_competition_id')});
-  } else {
-    //from default comp
-    competition = Competitions.findOne({});
+    var finalLeaderboardArray = [];
+    var user;
+    _.each(competition.users,function(value){
+      userObj = Users.findOne({yammer_id: ''+value.userId});
+      finalLeaderboardArray.push(_.extend({}, value, userObj.user));
+    });
+    console.log('final array', finalLeaderboardArray);
+    return finalLeaderboardArray;
   }
+};
 
-  return competition && competition.users;
+Template.leaderboard.get_user_obj = function(userId){
+  return Users.findOne({yammer_id: userId});
 };
 
 Template.all_competitions.all_comps = function(){
@@ -38,7 +49,15 @@ Template.nav_bar.events({
   'click .competition-list': function(){
     Session.set('current_page', 'all_competition_page');
   }
-  // 'click .'
+})
+
+Template.all_competitions.events({
+  'click .leaderboard-page-button': function(e){
+    if (e && e.target){
+      Session.set('current_page', 'leaderboard_page');
+      Session.set('current_competition_id', e.target.id);
+    }
+  }
 })
 
 Template.new_competition.events({
@@ -64,8 +83,6 @@ Template.new_competition.events({
     });
   }
 });
-
-
 
 Template.leaderboard.events({
   'click .leaderboard-buttons-plus-one': function (){
