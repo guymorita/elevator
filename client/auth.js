@@ -6,6 +6,11 @@ Meteor.startup(function(){
     if (resp.authResponse) {
     }
   });
+
+  //dummy data
+  Session.set('current_competition_id', 'fwqgvwvRrKiKLSMtv');
+  Session.set('current_yammer_id', 9280340);
+
 });
 
 Template.yammer_login.events({
