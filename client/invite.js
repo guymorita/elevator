@@ -14,7 +14,7 @@ var get_friends = function(){
 
 var send_msg_to_friend = function(input){
   var payload = {
-    body: 'Your challenge, should you choose to accept it. Visit: http://www.google.com',
+    body: 'Your challenge, should you choose to accept it. Visit The Elevator App',
     direct_to_id: input.id
   };
   yam.request({
