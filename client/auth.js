@@ -1,7 +1,7 @@
 Meteor.startup(function(){
   yam.connect.loginButton('#yammer-login', function (resp) {
     if (resp.authResponse) {
-        document.getElementById('yammer-login').innerHTML = 'Welcome to Yammer!';
+      document.getElementById('yammer-login').innerHTML = 'Welcome to Yammer!';
     }
   });
 });
@@ -18,5 +18,16 @@ Template.yammer_login.events({
         }
       }
     );
+  },
+
+  'click .test' : function () {
+    console.log('test');
+    yam.getLoginStatus(function(res){
+      console.log('res', res);
+      Meteor.call('new_user', res, function(error, result){
+        console.log('error', error);
+        console.log('result', result);
+      });
+    });
   }
 });
