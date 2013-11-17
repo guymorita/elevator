@@ -5,8 +5,14 @@
 </head>
 
 <body>
+  {{> yammer_login}}
   {{> new_competition}}
 </body>
+
+<template name="yammer_login">
+  <span id="yammer-login"> yammer log in</span>
+  <input type="button" value="Click" />
+</template>
 
 <template name="new_competition">
     <h1>New Competition</h1>
