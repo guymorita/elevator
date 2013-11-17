@@ -22,8 +22,6 @@ Template.all_users.get_all_users = function(){
   return Users.find({});
 };
 
-
-
 Template.leaderboard.user_list = function(){
   if (Session.get('current_competition_id')){
     competition = Competitions.findOne({_id:Session.get('current_competition_id')});
@@ -31,13 +29,13 @@ Template.leaderboard.user_list = function(){
     var userObj;
     _.each(competition.users,function(value){
       userObj = Users.findOne({yammer_id: ''+value.userId});
-      finalLeaderboardArray.push(_.extend({}, value, userObj.user));
+      if (userObj){
+        finalLeaderboardArray.push(_.extend({}, value, userObj.user));
+      }
     });
     return finalLeaderboardArray;
   }
 };
-
-
 
 Template.all_competitions.all_comps = function(){
   return Competitions.find({});
