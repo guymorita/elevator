@@ -48,5 +48,22 @@ Template.leaderboard.user_list = function(){
 };
 
 Template.leaderboard.events({
-
+  'click .leaderboard-buttons-plus-one': function (){
+    var competitionId = Session.get('current_competition_id'),
+        userId = Session.get('current_yammer_id'),
+        value = 1;
+    Meteor.call('increment_counter', competitionId, userId, value, function(error, userObj){
+      console.log('error', error);
+      console.log('result', userObj);
+    });
+  },
+  'click .leaderboard-buttons-plus-five': function (){
+    var competitionId = Session.get('current_competition_id'),
+        userId = Session.get('current_yammer_id'),
+        value = 5;
+    Meteor.call('increment_counter', competitionId, userId, value, function(error, userObj){
+      console.log('error', error);
+      console.log('result', userObj);
+    });
+  }
 });

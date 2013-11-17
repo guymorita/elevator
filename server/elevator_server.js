@@ -7,14 +7,14 @@ Meteor.startup(function () {
 
 Meteor.methods({
   new_competition: function(competitionObj){
-    return Competition.insert(competitionObj, function(competitionId) {
+    return Competitions.insert(competitionObj, function(competitionId) {
       return competitionId;
     });
   },
   increment_counter: function(competitionId, userId, value){
     value = value || 1;
 
-    var comp = Competition.findOne({_id: competitionId});
+    var comp = Competitions.findOne({_id: competitionId});
     console.log('before', comp);
     _(comp.users).each(function(user){
       if(user.userId === userId) {
@@ -22,7 +22,7 @@ Meteor.methods({
       }
     });
     console.log('after', comp);
-    Competition.upsert({_id:competitionId}, comp);
+    Competitions.upsert({_id:competitionId}, comp);
   },
   new_user: function(input){
     if(!input){
