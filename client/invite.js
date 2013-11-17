@@ -4,8 +4,7 @@ var get_friends = function(){
     method: "GET",
     success: function (data) {
       console.log("The request was successful.");
-      console.log(data);
-      Session.set('friends', data);
+      Session.set('friends', data); //output
     },
     error: function (data) {
       console.log("There was an error with the request.");
