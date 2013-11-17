@@ -33,7 +33,17 @@ Meteor.methods({
   },
   add_user_to_competition: function(competitionId, userId){
     // find the array index of the user in the competition
-    var competition = Competitions.findOne({_id:competitionId, "users.userId": userId});
+    competitionId = competitionId || "fwqgvwvRrKiKLSMtv";
+    userId = userId || "LsosJQvweuyZGeadh";
+
+    var query = {
+      '_id': competitionId,
+      'users.userId': userId
+    };
+    var competition = Competitions.findOne(query);
+
+    console.log('--competition', competition);
+
     if (!competition){
       Competitions.update({_id:competitionId},
         {$addToSet: {'users': {'userId': userId, 'score': 0}}},
