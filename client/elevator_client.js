@@ -34,7 +34,11 @@ Template.leaderboard.user_list = function(){
         finalLeaderboardArray.push(_.extend({}, value, userObj.user));
       }
     });
-    return finalLeaderboardArray;
+
+    var output = _.sortBy(finalLeaderboardArray, function(item){
+      return -1*parseInt(item.score, 10);
+    });
+    return output;
   }
 };
 
