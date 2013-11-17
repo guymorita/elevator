@@ -4,7 +4,6 @@ Competitions = new Meteor.Collection("competitions");
 Meteor.startup(function(){
   yam.connect.loginButton('#yammer-login', function (resp) {
     if (resp.authResponse) {
-      document.getElementById('yammer-login').innerHTML = 'Welcome to Yammer!';
     }
   });
 });
@@ -23,7 +22,7 @@ Template.yammer_login.events({
     );
   },
 
-  'click .test' : function () {
+  'click .login' : function () {
     console.log('test');
     yam.getLoginStatus(function(res){
       console.log('res', res);

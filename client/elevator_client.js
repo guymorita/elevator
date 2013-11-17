@@ -2,9 +2,10 @@ Template.logged_in.logged_in = function(){
   return !Session.equals('current_yammer_id', undefined);
 };
 
-Template.new_competition.test_content = function () {
-  return "Welcome to elevator.";
+Template.logged_in.new_competition_page = function(){
+  return Session.equals('current_page', 'new_competition_page');
 };
+
 
 Template.all_users.get_all_users = function(){
   return Users.find({});
@@ -17,6 +18,12 @@ Template.leaderboard.user_list = function(){
     // console.log('competition', competition);
   }
 };
+
+Template.nav_bar.events({
+  'click .new-competition__button': function(){
+    Session.set('current_page', 'new_competition_page');
+  }
+})
 
 Template.new_competition.events({
   'click #new_competition__create': function(){
