@@ -55,10 +55,7 @@ Meteor.methods({
     }
   },
   get_competition_object: function(competitionId){
-    return Competition.find({competitionId: competitionId});
-  },
-  get_all_competitions: function(){
-    return Competition.find({});
+    return Competitions.find({competitionId: competitionId});
   }
 });
 

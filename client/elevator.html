@@ -16,12 +16,14 @@
 </template>
 
 <template name="logged_in">
+  <div class="container">
   {{> open_graph}}
   {{#if logged_in}}
     {{#if new_competition_page}}
       {{> new_competition}}
     {{/if}}
     {{#if all_competition_page}}
+      {{> all_competitions}}
     {{/if}}
     {{#if leaderboard_page}}
       {{> leaderboard}}
@@ -29,6 +31,7 @@
     {{> all_users}}
     {{> invite}}
   {{/if}}
+  </div>
 </template>
 
 <template name="nav_bar">
@@ -46,7 +49,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="#" class="new-competition__button">New</a></li>
-        <li><a href="#" class="competition-list">Competition</a></li>
+        <li><a href="#" class="competition-list">Competitions</a></li>
         {{> yammer_login}}
       </ul>
     </div>
@@ -59,24 +62,65 @@
 </template>
 
 <template name="new_competition">
-  <div class="new-competition">
-    <h1>New Competition</h1>
-    <input class="new-competition__name" type="text" value="name">
-    <select class="new-competition__type">
-        <option value="fitness">Fitness</option>
-        <option value="health">Health</option>
-        <option value="walk">Volunteer</option>
-        <option value="walk">Professional</option>
-        <option value="walk">Health</option>
-        <option value="walk">Health</option>
-    </select>
-    <input type="text" class="new-competition__goal-number">
-    <input type="text" class="new-competition__goal-metric">
-    <input type="date" class="new-competition__end-date">
-    <button id="new_competition__create">Create</button>
-    {{test_content}}
-  <div>
-    <button id="add_user_to_competition">Add User</button>
+    <div class="new-competition">
+      <h1>New Competition</h1>
+      <div class="row">
+          <div class="col-xs-6 col-md-4">Name</div>
+          <div class="col-xs-12 col-md-8">
+            <input class="new-competition__name form-control" type="text" value="name">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-6 col-md-4">Type</div>
+          <div class="col-xs-12 col-md-8">
+            <select class="new-competition__type">
+                <option value="fitness">Fitness</option>
+                <option value="health">Health</option>
+                <option value="walk">Volunteer</option>
+                <option value="walk">Professional</option>
+                <option value="walk">Health</option>
+                <option value="walk">Health</option>
+            </select>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-6 col-md-4">Goal Number</div>
+          <div class="col-xs-12 col-md-8">
+            <input type="text" class="new-competition__goal-number">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-6 col-md-4">Goal Metric</div>
+          <div class="col-xs-12 col-md-8">
+            <input type="text" class="new-competition__goal-metric">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-6 col-md-4">End Date</div>
+          <div class="col-xs-12 col-md-8">
+            <input type="date" class="new-competition__end-date">
+          </div>
+      </div>
+      <button class="btn btn-success" id="new_competition__create">Create</button>
+      {{test_content}}
+    </div>
+    <button class="btn btn-danger" id="add_user_to_competition">Add User</button>
+</template>
+
+<template name="all_competitions">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Competition Name</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    {{#each all_comps}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{type}}</td>
+    {{/each}}
+  </table>
 </template>
 
 <template name="all_users">
@@ -90,15 +134,13 @@
   <div class="leaderboard">
     <h1>Leaderboard</h1>
     {{#each user_list}}
-      <div>Username: {{userId}} Score: {{score}}</div>
+      <div>Username: {{this.userId}} Score: {{this.score}}</div>
     {{/each}}
   </div>
 </template>
 
 <template name="open_graph">
-  <div>
-    <input type="button" value="post" class="post" />
-  </div>
+
 </template>
 
 <template name="invite">
@@ -106,7 +148,7 @@
     <input type="button" value="invite" class="invite" />
     <h2>All users</h2>
     {{#each friends}}
-      <div>{{this.first_name}}</div>
+      <div class="{{this.id}} invite_by_id">{{this.first_name}}</div>
     {{/each}}
   </div>
 </template>

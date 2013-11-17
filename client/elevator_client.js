@@ -6,23 +6,39 @@ Template.logged_in.new_competition_page = function(){
   return Session.equals('current_page', 'new_competition_page');
 };
 
+Template.logged_in.all_competition_page = function(){
+  return Session.equals('current_page', 'all_competition_page');
+}
+
 
 Template.all_users.get_all_users = function(){
   return Users.find({});
 };
 
 Template.leaderboard.user_list = function(){
+  var competition;
   if (Session.get('current_competition_id')){
-    var competition = Competitions.findOne({_id:Session.get('current_competition_id')});
-    return competition && competition.users;
-    // console.log('competition', competition);
+    competition = Competitions.findOne({_id:Session.get('current_competition_id')});
+  } else {
+    //from default comp
+    competition = Competitions.findOne({});
   }
+
+  return competition && competition.users;
+};
+
+Template.all_competitions.all_comps = function(){
+  return Competitions.find({});
 };
 
 Template.nav_bar.events({
   'click .new-competition__button': function(){
     Session.set('current_page', 'new_competition_page');
+  },
+  'click .competition-list': function(){
+    Session.set('current_page', 'all_competition_page');
   }
+  // 'click .'
 })
 
 Template.new_competition.events({
@@ -48,6 +64,8 @@ Template.new_competition.events({
     });
   }
 });
+
+
 
 Template.leaderboard.events({
 
