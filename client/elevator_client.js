@@ -21,10 +21,27 @@ Template.logged_in.add_friend_page = function(){
 Template.all_users.get_all_users = function(){
   return Users.find({});
 };
-var scoreArray = [];
+
+// var add_friends_to_comp = function(){
+//   var all_friends = Session.get('friends');
+//   var ten_friends = _.first(all_friends, 10);
+
+//   Competitions.find({}).forEach(function(comp){
+//     if(comp.users.length < 20){
+//       _(ten_friends).each(function(friend){
+//         Meteor.call('add_user_to_competition', comp._id, friend.id, function(error, userObj){
+//           console.log('error', error);
+//           console.log('result', userObj);
+//         });
+//       });
+//     }
+//   });
+
+// };
+
 Template.leaderboard.user_list = function(){
-  scoreArray = [];
   Meteor.call('add_user_to_competition', Session.get('current_competition_id'), Session.get('current_yammer_id'));
+
   if (Session.get('current_competition_id')){
     competition = Competitions.findOne({_id:Session.get('current_competition_id')});
     var finalLeaderboardArray = [];

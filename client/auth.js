@@ -1,7 +1,7 @@
 Users = new Meteor.Collection("users");
 Competitions = new Meteor.Collection("competitions");
 
-var get_friends = function(){
+var get_friends_and_set_them = function(){
   yam.request({
     url: "https://www.yammer.com/api/v1/users.json",
     method: "GET",
@@ -20,12 +20,13 @@ Meteor.startup(function(){
     if (resp.authResponse) {
       Session.set('current_yammer_id', resp.user.id);
 
+      //create a new user
       Meteor.call('new_user', resp, function(error, userObj){
         console.log('error', error);
         console.log('result', userObj);
       });
 
-      get_friends();
+      get_friends_and_set_them();
 
     }
   });
