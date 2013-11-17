@@ -7,6 +7,7 @@
 <body>
   {{> yammer_login}}
   {{> new_competition}}
+  {{> open_graph}}
 </body>
 
 <template name="yammer_login">
@@ -25,4 +26,10 @@
         <option value="walk">Walk</option>
     </select>
     {{test_content}}
+</template>
+
+<template name="open_graph">
+  <div>
+    <input type="button" value="post" class="post" />
+  </div>
 </template>
