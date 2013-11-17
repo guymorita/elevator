@@ -81,6 +81,7 @@ Template.new_competition.events({
 
 Template.leaderboard.events({
   'click .leaderboard-buttons-plus-one': function (){
+    event.preventDefault();
     var competitionId = Session.get('current_competition_id'),
         userId = Session.get('current_yammer_id'),
         value = 1;
@@ -90,6 +91,7 @@ Template.leaderboard.events({
     });
   },
   'click .leaderboard-buttons-plus-five': function (){
+    event.preventDefault();
     var competitionId = Session.get('current_competition_id'),
         userId = Session.get('current_yammer_id'),
         value = 5;

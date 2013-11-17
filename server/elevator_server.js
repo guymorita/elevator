@@ -1,3 +1,6 @@
+// Users.remove({});
+// Competitions.remove({});
+
 Users = new Meteor.Collection("users");
 Competitions = new Meteor.Collection("competitions");
 
@@ -49,13 +52,14 @@ Meteor.methods({
       'users.userId': userId
     };
     var added = Competitions.findOne(query);
-
+    var competitionObj = Competitions.findOne({_id: competitionId});
+    var randomStart = Math.floor(Math.random()*competitionObj.goal_number);
     console.log('--added', added);
 
     //if user hasn't been added to the competition
     if (!added){
       Competitions.update({_id:competitionId},
-        {$addToSet: {'users': {'userId': userId, 'score': 3}}},
+        {$addToSet: {'users': {'userId': userId, 'score': randomStart}}},
         function(err, result){
           console.log('insert err result', err, result);
         }
@@ -66,13 +70,4 @@ Meteor.methods({
     return Competitions.find({competitionId: competitionId});
   }
 });
-
-// Competition = {
-//   users: [
-//     {
-//       userId: 123,
-//       score: 3
-//     }
-//   ]
-// }
 
