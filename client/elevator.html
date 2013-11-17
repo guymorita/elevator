@@ -1,16 +1,35 @@
 <head>
   <title>elevator</title>
-  <link src="public/css/foundation.css">
-  <link src="public/css/normalize.css">
+  <link src="css/foundation.css">
+  <link src="css/normalize.css">
 </head>
 
 <body>
-  {{> yammer_login}}
-  {{> new_competition}}
-  {{> all_users}}
-  {{> open_graph}}
-  {{> leaderboard}}
+  {{> main_container}}
 </body>
+
+<template name="main_container">
+  {{> nav_bar}}
+  {{> yammer_login}}
+  {{> logged_in}}
+</template>
+
+<template name="logged_in">
+  {{#if logged_in}}
+    {{> new_competition}}
+    {{> all_users}}
+    {{> open_graph}}
+    {{> leaderboard}}
+  {{/if}}
+</template>
+
+<template name="nav_bar">
+  <nav class="top-bar">
+    <ul class="title-area">
+      <li class="name">ElevatorHaters</li>
+    </ul>
+</nav>
+</template>
 
 <template name="yammer_login">
   <div>

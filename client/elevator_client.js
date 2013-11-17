@@ -1,3 +1,7 @@
+Template.logged_in.logged_in = function(){
+  return !Session.equals('current_yammer_id', undefined);
+};
+
 Template.new_competition.test_content = function () {
   return "Welcome to elevator.";
 };
