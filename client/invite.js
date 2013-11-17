@@ -28,6 +28,17 @@ var create_pending_user = function (input) {
   });
 };
 
+var add_pending_user_to_comp = function (input) {
+  //save yammer_id to current comp
+  var competitionId = Session.get('current_competition_id');
+  var userId = input.id;
+
+  Meteor.call('add_user_to_competition', competitionId, userId, function(error, userObj){
+    console.log('add_pending_user_to_comp error', error);
+    console.log('add_pending_user_to_comp result', userObj);
+  });
+};
+
 Template.invite.friends = function(){
   return Session.get('friends');
 };
@@ -41,5 +52,6 @@ Template.invite.events({
     //this is refering to one pending_user, amazing
     console.log('invite_by_id', this);
     create_pending_user(this);
+    add_pending_user_to_comp(this);
   }
 });
