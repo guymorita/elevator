@@ -14,6 +14,10 @@ Template.logged_in.leaderboard_page = function(){
   return Session.equals('current_page', 'leaderboard_page');
 };
 
+Template.logged_in.add_friend_page = function(){
+  return Session.equals('current_page', 'add_friend_page');
+}
+
 Template.all_users.get_all_users = function(){
   return Users.find({});
 };
@@ -24,19 +28,16 @@ Template.leaderboard.user_list = function(){
   if (Session.get('current_competition_id')){
     competition = Competitions.findOne({_id:Session.get('current_competition_id')});
     var finalLeaderboardArray = [];
-    var user;
+    var userObj;
     _.each(competition.users,function(value){
       userObj = Users.findOne({yammer_id: ''+value.userId});
       finalLeaderboardArray.push(_.extend({}, value, userObj.user));
     });
-    console.log('final array', finalLeaderboardArray);
     return finalLeaderboardArray;
   }
 };
 
-Template.leaderboard.get_user_obj = function(userId){
-  return Users.findOne({yammer_id: userId});
-};
+
 
 Template.all_competitions.all_comps = function(){
   return Competitions.find({});
@@ -102,5 +103,8 @@ Template.leaderboard.events({
       console.log('error', error);
       console.log('result', userObj);
     });
+  },
+  'click .add-friends': function(){
+    Session.set('current_page', 'add_friend_page');
   }
 });

@@ -2,7 +2,7 @@
   <title>elevator</title>
   <link src="css/bootstrap.css">
   <link src="css/bootstrap-theme.css">
-  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 
@@ -28,8 +28,9 @@
     {{#if leaderboard_page}}
       {{> leaderboard}}
     {{/if}}
-    {{> all_users}}
-    {{> invite}}
+    {{#if add_friend_page}}
+      {{> invite}}
+    {{/if}}
   {{/if}}
   </div>
 </template>
@@ -147,6 +148,10 @@
     <button class="leaderboard-buttons-plus-one">Plus One</button>
     <button class="leaderboard-buttons-plus-five">Plus Five</button>
   </div>
+
+  <button class="btn btn-primary add-friends">
+    Invite Friends
+  </button>
 </template>
 
 <template name="open_graph">
@@ -158,7 +163,7 @@
     <input type="button" value="invite" class="invite" />
     <h2>All users</h2>
     {{#each friends}}
-      <div class="{{this.id}} invite_by_id">{{this.first_name}}</div>
+      <button class="{{this.id}} invite_by_id">{{this.first_name}}</button>
     {{/each}}
   </div>
 </template>
