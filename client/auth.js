@@ -24,6 +24,10 @@ Template.yammer_login.events({
     console.log('test');
     yam.getLoginStatus(function(res){
       console.log('res', res);
+      Meteor.call('new_user', res, function(error, result){
+        console.log('error', error);
+        console.log('result', result);
+      });
     });
   }
 });
