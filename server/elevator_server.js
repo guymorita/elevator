@@ -10,7 +10,7 @@ Meteor.methods({
       return competitionId;
     });
   },
-  increment_counter: function(competition, value){
+  increment_counter: function(competition, userId, value){
 
   },
   new_user: function(userid){
@@ -20,10 +20,10 @@ Meteor.methods({
 
   },
   get_competition_object: function(competitionId){
-
+    return Competition.find({competitionId: competitionId});
   },
   get_all_competitions: function(){
-
+    return Competition.find({});
   }
 
 });
