@@ -12,7 +12,17 @@ Meteor.methods({
     });
   },
   increment_counter: function(competitionId, userId, value){
-    // Competition.update({_id: competitionId}, {users: }
+    value = value || 1;
+
+    var comp = Competition.findOne({_id: competitionId});
+    console.log('before', comp);
+    _(comp.users).each(function(user){
+      if(user.userId === userId) {
+        user.score += value;
+      }
+    });
+    console.log('after', comp);
+    Competition.upsert({_id:competitionId}, comp);
   },
   new_user: function(input){
     if(!input){
