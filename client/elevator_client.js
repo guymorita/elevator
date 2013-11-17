@@ -10,14 +10,6 @@ Template.all_users.get_all_users = function(){
   return Users.find({});
 };
 
-Template.leaderboard.user_list = function(){
-  if (Session.get('current_competition_id')){
-    var competition = Competitions.findOne({_id:Session.get('current_competition_id')});
-    return competition && competition.users;
-    // console.log('competition', competition);
-  }
-};
-
 Template.new_competition.events({
   'click #new_competition__create': function(){
     var new_competition_obj = {};
@@ -41,6 +33,19 @@ Template.new_competition.events({
     });
   }
 });
+
+
+Template.leaderboard.user_list = function(){
+  var competition;
+  if (Session.get('current_competition_id')){
+    competition = Competitions.findOne({_id:Session.get('current_competition_id')});
+  } else {
+    //from default comp
+    competition = Competitions.findOne({_id:"fwqgvwvRrKiKLSMtv"});
+  }
+
+  return competition && competition.users;
+};
 
 Template.leaderboard.events({
 

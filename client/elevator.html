@@ -72,7 +72,7 @@
   <div class="leaderboard">
     <h1>Leaderboard</h1>
     {{#each user_list}}
-      <div>Username: {{userId}} Score: {{score}}</div>
+      <div>Username: {{this.userId}} Score: {{this.score}}</div>
     {{/each}}
   </div>
 </template>
