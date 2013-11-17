@@ -10,6 +10,7 @@
   {{> all_users}}
   {{> open_graph}}
   {{> leaderboard}}
+  {{> invite}}
 </body>
 
 <template name="yammer_login">
@@ -60,5 +61,13 @@
 <template name="open_graph">
   <div>
     <input type="button" value="post" class="post" />
+  </div>
+</template>
+
+<template name="invite">
+  <div class="panel">
+    <input type="button" value="invite" class="invite" />
+    <h2>All users</h2>
+
   </div>
 </template>
