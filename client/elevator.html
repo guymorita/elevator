@@ -32,6 +32,8 @@
     {{#if add_friend_page}}
       {{> invite}}
     {{/if}}
+  {{else}}
+    {{> homepage}}
   {{/if}}
   </div>
 </template>
@@ -63,6 +65,10 @@
       <li><a href="#" class="logout">Logout</a></li>
     {{/if}}
     <li><a href="#" class="login" id="yammer-login"></a></li>
+</template>
+
+<template name="homepage">
+  <imc class="homepage-pic" src="images/barbell.png">
 </template>
 
 <template name="new_competition">
@@ -142,15 +148,11 @@
     <div class="chart">
       {{#each user_list}}
       <div class="row">
-        <!-- <div class="col-md-3"> -->
           <img class="comp-pic" src="{{this.mugshot_url}}">
           <div class="name">{{this.full_name}}</div>
           <div> | Score:</div>
           <div class="baritem" style="width: {{scaled_score}}px"></div>
-        <!-- </div> -->
-        <!-- <div class="col-md-9"> -->
         </div>
-      <!-- </div> -->
       {{/each}}
     </div>
   </div>
