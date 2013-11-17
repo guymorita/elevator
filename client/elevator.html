@@ -3,6 +3,7 @@
   <link src="css/bootstrap.css">
   <link src="css/bootstrap-theme.css">
   <script type="text/javascript" src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 
@@ -76,7 +77,7 @@
       <div class="row">
           <div class="col-xs-6 col-md-4">Type</div>
           <div class="col-xs-12 col-md-8">
-            <select class="new-competition__type">
+            <select class="form-control new-competition__type">
                 <option value="fitness">Fitness</option>
                 <option value="health">Health</option>
                 <option value="walk">Volunteer</option>
@@ -89,19 +90,19 @@
       <div class="row">
           <div class="col-xs-6 col-md-4">Goal Number</div>
           <div class="col-xs-12 col-md-8">
-            <input type="number" class="new-competition__goal-number">
+            <input type="number" class="form-control new-competition__goal-number">
           </div>
       </div>
       <div class="row">
           <div class="col-xs-6 col-md-4">Goal Metric</div>
           <div class="col-xs-12 col-md-8">
-            <input type="text" class="new-competition__goal-metric">
+            <input type="text" class="form-control new-competition__goal-metric">
           </div>
       </div>
       <div class="row">
           <div class="col-xs-6 col-md-4">End Date</div>
           <div class="col-xs-12 col-md-8">
-            <input type="date" class="new-competition__end-date">
+            <input type="date" class="form-control new-competition__end-date">
           </div>
       </div>
       <button class="btn btn-success" id="new_competition__create">Create</button>
@@ -144,8 +145,8 @@
     {{/each}}
   </div>
   <div class="leaderboard-buttons">
-    <button class="leaderboard-buttons-plus-one">Plus One</button>
-    <button class="leaderboard-buttons-plus-five">Plus Five</button>
+    <button class="btn leaderboard-buttons-plus-one">Plus One</button>
+    <button class="btn leaderboard-buttons-plus-five">Plus Five</button>
   </div>
 
   <button class="btn btn-primary add-friends">
@@ -164,7 +165,7 @@
   <div class="panel">
     <h2>All users</h2>
     {{#each friends}}
-      <button class="{{this.id}} invite_by_id">{{this.first_name}}</button>
+      <button class="btn {{this.id}} invite_by_id">{{this.first_name}}</button>
     {{/each}}
   </div>
 </template>
