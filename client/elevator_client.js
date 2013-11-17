@@ -8,7 +8,7 @@ Template.logged_in.new_competition_page = function(){
 
 Template.logged_in.all_competition_page = function(){
   return Session.equals('current_page', 'all_competition_page');
-}
+};
 
 
 Template.all_users.get_all_users = function(){

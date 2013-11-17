@@ -57,8 +57,10 @@
 </template>
 
 <template name="yammer_login">
-    <li><a href="#" class="logout">Logout</a></li>
-    <li><a href="#" class="login" id="yammer-login">Login</a></li>
+    {{#if yammer_id}}
+      <li><a href="#" class="logout">Logout</a></li>
+    {{/if}}
+    <li><a href="#" class="login" id="yammer-login"></a></li>
 </template>
 
 <template name="new_competition">
